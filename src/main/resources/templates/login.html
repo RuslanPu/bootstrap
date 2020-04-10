@@ -2,13 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Login</title>
 </head>
 <body>
-<form method="post" th:action="@{/login}">
-    <input name="j_userEmail"/>
-    <input name="j_password"/>
-    <input type="submit" value="Sign In"/>
-</form>
+<div class="container">
+    <div class="row col-md-7 ">
+        <form method="post" th:action="@{/login}">
+            <input name="j_userEmail"/>
+            <input name="j_password"/>
+            <input type="submit" value="Sign In"/>
+        </form>
+        <div class="alert alert-primary" role="alert">
+            A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            A simple secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
