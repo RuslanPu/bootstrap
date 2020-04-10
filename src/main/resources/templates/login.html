@@ -8,19 +8,22 @@
     <title>Login</title>
 </head>
 <body>
-<div class="container">
-    <div class="row col-md-7 ">
-        <form method="post" th:action="@{/login}">
-            <input name="j_userEmail"/>
-            <input name="j_password"/>
-            <input type="submit" value="Sign In"/>
-        </form>
-        <div class="alert alert-primary" role="alert">
-            A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form method="post" th:action="@{/login}">
+                <h2>Please Sign in</h2>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="j_userEmail">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="j_password">
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
+            </form>
         </div>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-        </div>
+        <div class="col-lg-4"></div>
     </div>
 </div>
 
