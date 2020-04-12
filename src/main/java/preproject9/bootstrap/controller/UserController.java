@@ -20,11 +20,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService service;
-
     @RequestMapping(value = "/userPage", method = RequestMethod.GET)
-    public String userPage(ModelMap model, Authentication auth) {
+    public String userPage(ModelMap model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Role> rolesUser =(List<Role>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         user.setRoles(rolesUser);
