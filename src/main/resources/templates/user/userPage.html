@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 <head>
-    <title>User Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>User page</title>
 </head>
 <body>
+<div class="bg-dark d-flex flex-row align-content-center">
+    <div class="bg-dark pt-2 pl-3">
+        <p class="text-light"><b>user@mail</b> with roles: USER</p>
+    </div>
+    <div class="bg-dark pt-2 pr-3 ml-auto">
+        <p>
+            <a th:href="@{/perform_logout}" class="text-secondary">Logout</a>
+        </p>
+    </div>
+</div>
 <!--/*@thymesVar id="messages" type="java"*/-->
 <div th:each="msg : ${messages}">
     <h1 th:text="${msg}"></h1>
 </div>
-<a th:href="@{/perform_logout}" />Logout</a>
+
 </body>
 </html>
