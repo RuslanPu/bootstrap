@@ -1,5 +1,6 @@
 package preproject9.bootstrap.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import preproject9.bootstrap.model.Role;
 import preproject9.bootstrap.model.User;
 import preproject9.bootstrap.service.UserService;
@@ -23,9 +24,13 @@ public class AdminController {
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ModelAndView mainPage() {
 		List<User> users = service.getAllUser();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Role> rolesUser =(List<Role>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		user.setRoles(rolesUser);
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("admin/users");
+		modelAndView.addObject("user", user);
 		modelAndView.addObject("userList", users);
 
 		return modelAndView;
