@@ -51,7 +51,9 @@
                                 <td>Last Name</td>
                                 <td>Age</td>
                                 <td th:text="${user.email}"></td>
-                                <td th:each="role : ${user.roles}" th:text="${role.name}"></td>
+                                <td>
+                                    <span th:each="role : ${user.roles}" th:text="${role.name}" class="pr-1"></span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
