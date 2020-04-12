@@ -48,8 +48,8 @@
                             <tr class="bg-light">
                                 <th scope="row" th:text="${user.id}"></th>
                                 <td th:text="${user.name}"></td>
-                                <td>Last Name</td>
-                                <td>Age</td>
+                                <td th:text="${user.lastName}"></td>
+                                <td th:text="${user.age}"></td>
                                 <td th:text="${user.email}"></td>
                                 <td>
                                     <span th:each="role : ${user.roles}" th:text="${role.name}" class="pr-1"></span>
