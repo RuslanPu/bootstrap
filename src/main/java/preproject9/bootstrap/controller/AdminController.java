@@ -23,6 +23,10 @@ public class AdminController {
 
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ModelAndView mainPage() {
+		List<Role> listRoles = service.getAllRole();
+
+
+
 		List<User> users = service.getAllUser();
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Role> rolesUser =(List<Role>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -32,6 +36,7 @@ public class AdminController {
 		modelAndView.setViewName("admin/users");
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("userList", users);
+		modelAndView.addObject("listRoles", listRoles);
 
 		return modelAndView;
 	}
@@ -108,29 +113,32 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView addUser(@ModelAttribute("user") User user, @RequestParam("checkboxRole") String[] checkboxRoles) {
+	public ModelAndView addUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("age") Integer age, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("checkboxRole") String[] checkboxRoles) {
+
+		User user = new User(name, lastName, age, password, email);
+
 		List<Role> listRoles = service.getAllRole();
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("redirect:/admin/users");
-		if (checkboxRoles.length < 2) {
-			modelAndView.addObject("error","Choose the role or roles");
-
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.setViewName("admin/addPage");
-			return modelAndView;
-		}
-		if (user.getPassword().equals("") || user.getEmail().equals("")  || user.getName().equals("") ) {
-			modelAndView.addObject("error","Some field is empty");
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.setViewName("admin/addPage");
-			return modelAndView;
-		}
-		if (!service.unicEmail(user.getEmail())) {
-			modelAndView.addObject("error","Email must be unic");
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.setViewName("admin/editPage");
-			return modelAndView;
-		}
+//		if (checkboxRoles.length < 2) {
+//			modelAndView.addObject("error","Choose the role or roles");
+//
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.setViewName("admin/addPage");
+//			return modelAndView;
+//		}
+//		if (user.getPassword().equals("") || user.getEmail().equals("")  || user.getName().equals("") ) {
+//			modelAndView.addObject("error","Some field is empty");
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.setViewName("admin/addPage");
+//			return modelAndView;
+//		}
+//		if (!service.unicEmail(user.getEmail())) {
+//			modelAndView.addObject("error","Email must be unic");
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.setViewName("admin/editPage");
+//			return modelAndView;
+//		}
 
 		service.add(user, checkboxRoles);
 		return modelAndView;
