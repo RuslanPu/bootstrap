@@ -73,31 +73,31 @@ public class AdminController {
 			oldRoles.add(new Role(checkboxRoles[i]));
 		}
 		user.setRoles(oldRoles);
-		if (checkboxRoles.length < 2) {
-			modelAndView.setViewName("admin/editPage");
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.addObject("error","Choose the role or roles");
-			modelAndView.addObject("user", user);
-			return modelAndView;
-		}
-
-		if (user.getPassword().equals("") || user.getEmail().equals("")  || user.getName().equals("") ) {
-			modelAndView.setViewName("admin/editPage");
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.addObject("error","Some field is empty");
-			modelAndView.addObject("user", user);
-			return modelAndView;
-		}
-		String oldUnicEmail = service.getUserById(user.getId()).getEmail();
-
-		if ((!service.unicEmail(user.getEmail()) ^ user.getEmail().equals(oldUnicEmail))) {
-			modelAndView.setViewName("admin/editPage");
-			modelAndView.addObject("user", user);
-			modelAndView.addObject("listRoles", listRoles);
-			modelAndView.addObject("error","Email must be unic");
-
-			return modelAndView;
-		}
+//		if (checkboxRoles.length < 2) {
+//			modelAndView.setViewName("admin/editPage");
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.addObject("error","Choose the role or roles");
+//			modelAndView.addObject("user", user);
+//			return modelAndView;
+//		}
+//
+//		if (user.getPassword().equals("") || user.getEmail().equals("")  || user.getName().equals("") ) {
+//			modelAndView.setViewName("admin/editPage");
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.addObject("error","Some field is empty");
+//			modelAndView.addObject("user", user);
+//			return modelAndView;
+//		}
+//		String oldUnicEmail = service.getUserById(user.getId()).getEmail();
+//
+//		if ((!service.unicEmail(user.getEmail()) ^ user.getEmail().equals(oldUnicEmail))) {
+//			modelAndView.setViewName("admin/editPage");
+//			modelAndView.addObject("user", user);
+//			modelAndView.addObject("listRoles", listRoles);
+//			modelAndView.addObject("error","Email must be unic");
+//
+//			return modelAndView;
+//		}
 
 		service.edit(user, checkboxRoles);
 		return modelAndView;

@@ -70,7 +70,115 @@
                                                       class="pr-1"></span>
                                         </td>
                                         <td>
-                                            <a th:href="@{/admin/edit/{id}(id = ${user.id})}">Edit</a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-info" data-toggle="modal" th:data-target="'#exampleModal'+${user.id}">
+                                                Edit
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" th:id="'exampleModal'+${user.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+
+
+                                                                <div class="col-2"></div>
+                                                                <div class="col-8">
+                                                                    <form method="post" th:action="@{/admin/edit}" class="form-signin pt-md-5 mx-auto">
+
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                                                                ID</p>
+                                                                            <input class="form-control" th:name="id"
+                                                                                   th:value="${user.id}" readonly>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">First name</p>
+                                                                            <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    th:name="name"
+                                                                                    autofocus="autofocus"
+                                                                                    placeholder="First name"
+                                                                                    th:value="${user.name}"
+                                                                            >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Last name</p>
+                                                                            <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    th:name="lastName"
+                                                                                    autofocus="autofocus"
+                                                                                    placeholder="Last name"
+                                                                                    th:value="${user.lastName}"
+                                                                            >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Age</p>
+                                                                            <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    th:name="age"
+                                                                                    autofocus="autofocus"
+                                                                                    placeholder="Age"
+                                                                                    th:value="${user.age}"
+                                                                            >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Email</p>
+                                                                            <input
+                                                                                    type="email"
+                                                                                    class="form-control"
+                                                                                    th:name="email"
+                                                                                    autofocus="autofocus"
+                                                                                    placeholder="Email"
+                                                                                    th:value="${user.email}"
+                                                                            >
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Password</p>
+                                                                            <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    th:name="password"
+                                                                                    autofocus="autofocus"
+                                                                                    placeholder="Password"
+                                                                                    th:value="${user.password}"
+                                                                            >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Role</p>
+                                                                            <select  th:name="checkboxRole"  multiple class="form-control" id="exampleFormControlSelect3" style="height: 60px" >
+                                                                                <option th:each="role : ${listRoles}"  th:value="${role.name}" th:text="${role.name}" th:selected="${user.roles.contains(role)}"></option>
+
+                                                                            </select>
+                                                                        </div>
+
+                                                                </div>
+
+                                                                <div class="col-2"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+<!--                                            <a th:href="@{/admin/edit/{id}(id = ${user.id})}">Edit</a>-->
 
                                         </td>
                                         <td>
